@@ -1,0 +1,72 @@
+{% extends "base.html" %} {% block content %}
+<h2>Hello, {{ name }}! 👋</h2>
+<p>Here are your secured credentials.</p>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="card mb-4">
+      <div class="card-header bg-primary text-white">Add New Entry</div>
+      <div class="card-body">
+        <form method="POST">
+          <div class="mb-2">
+            <input
+              type="text"
+              name="service"
+              class="form-control"
+              placeholder="Service Name (e.g. Netflix)"
+              required
+            />
+          </div>
+          <div class="mb-2">
+            <input
+              type="text"
+              name="login"
+              class="form-control"
+              placeholder="Login / Email"
+            />
+          </div>
+          <div class="mb-2">
+            <input
+              type="password"
+              name="password"
+              class="form-control"
+              placeholder="Password"
+              required
+            />
+          </div>
+          <button type="submit" class="btn btn-success w-100">Save</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Login</th>
+          <th>Password</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for entry in entries %}
+        <tr>
+          <td>{{ entry.service_name }}</td>
+          <td>{{ entry.saved_login }}</td>
+          <td><code>{{ entry.saved_password }}</code></td>
+          <td>
+            <a
+              href="{{ url_for('delete_entry', entry_id=entry.id) }}"
+              class="btn btn-sm btn-outline-danger"
+              >Delete</a
+            >
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
