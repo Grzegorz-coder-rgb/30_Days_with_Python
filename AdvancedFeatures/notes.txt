@@ -1,0 +1,214 @@
+
+PYTHON ADVANCED FEATURES — STUDY NOTES
+=====================================
+
+Author: YoungProgrammer
+Level: From Beginner to Junior+/Senior mindset
+
+-------------------------------------
+1. *args and **kwargs
+-------------------------------------
+
+*args
+- Allows a function to accept ANY number of positional arguments.
+- Collected as a tuple.
+
+Example:
+def suma(*args):
+    return sum(args)
+
+Use when:
+- You don't know how many arguments will be passed
+- Building flexible APIs
+
+**kwargs
+- Allows a function to accept ANY number of keyword arguments.
+- Collected as a dictionary.
+
+Example:
+def user_info(**kwargs):
+    return kwargs
+
+Use when:
+- Configuration
+- Optional parameters
+- Framework-style code
+
+-------------------------------------
+2. return vs print
+-------------------------------------
+
+return:
+- Gives value back to the caller
+- Ends function execution
+
+print:
+- Only displays text in console
+- Does NOT return data
+
+IMPORTANT:
+return != print
+
+-------------------------------------
+3. assert
+-------------------------------------
+
+assert checks if a condition is TRUE.
+If FALSE → program raises AssertionError.
+
+Example:
+def divide(a, b):
+    assert b != 0, "Do not divide by zero"
+    return a / b
+
+Purpose:
+- Debugging
+- Testing assumptions
+- Catching programmer mistakes
+
+NOT for:
+- User input validation in production
+
+Advanced:
+You can catch it with try/except if needed.
+
+-------------------------------------
+4. List Comprehension
+-------------------------------------
+
+Compact syntax for creating lists.
+
+Basic:
+[x * 2 for x in range(5)]
+
+With condition:
+[x for x in range(10) if x % 2 == 0]
+
+Equivalent to:
+- for loop + append
+
+Advantages:
+- Cleaner code
+- Faster
+- Pythonic
+
+Rule:
+If you write for + append → consider list comprehension
+
+-------------------------------------
+5. map(), filter(), sorted()
+-------------------------------------
+
+map():
+- Transforms each element
+
+Example:
+map(lambda x: x * 2, data)
+
+filter():
+- Keeps elements matching a condition
+
+Example:
+filter(lambda x: x > 0, data)
+
+sorted():
+- Sorts iterable
+- Can use custom key
+
+Example:
+sorted(users, key=lambda u: u["age"], reverse=True)
+
+NOTE:
+List comprehension is often preferred for readability.
+
+-------------------------------------
+6. enumerate()
+-------------------------------------
+
+Adds index to iterable.
+
+Example:
+for i, value in enumerate(data, start=1):
+    print(i, value)
+
+Why use it?
+- Cleaner
+- Safer
+- No manual counters
+
+-------------------------------------
+7. yield and Generators
+-------------------------------------
+
+yield creates a generator.
+Generators:
+- Produce values one at a time
+- Save memory
+- Pause and resume execution
+
+Example:
+def numbers():
+    for i in range(1_000_000_000):
+        yield i
+
+Important:
+Generator does NOTHING until:
+- Used in for loop
+- next() is called
+
+yield vs return:
+return → all at once
+yield → one by one
+
+-------------------------------------
+8. Performance Insight
+-------------------------------------
+
+Generators are NOT always faster.
+They are:
+- Memory efficient
+- Scalable
+- Perfect for large data / streaming
+
+Lists are:
+- Faster for small datasets
+- Use more memory
+
+Golden rule:
+Speed < Memory safety
+
+-------------------------------------
+9. Timing Code (Benchmarking)
+-------------------------------------
+
+Use time.perf_counter():
+
+import time
+start = time.perf_counter()
+# code
+end = time.perf_counter()
+
+print(end - start)
+
+-------------------------------------
+10. Real-world Use Cases
+-------------------------------------
+
+- Reading large files line by line
+- Processing logs
+- Streaming API data
+- AI / Data pipelines
+- Automation scripts
+
+-------------------------------------
+11. Senior Mindset Tips
+-------------------------------------
+
+- Understand WHY, not just HOW
+- Prefer readable code
+- Control memory usage
+- Write scalable solutions
+- Avoid premature optimization
+
+-------------------------------------
+END OF NOTES
